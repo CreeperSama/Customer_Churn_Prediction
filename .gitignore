@@ -1,0 +1,29 @@
+# Virtual Environment (Crucial so you don't upload your whole venv folder)
+venv/
+.venv/
+env/
+ENV/
+
+# Python caching
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# Environment variables / credentials (if you use them later)
+.env
+
+# Large Data files (Optional: uncomment if you don't want to push heavy CSVs)
+*.csv
+*.xlsx
+
+# Trained Models (Optional: uncomment if your saved pickle models are too large)
+# *.pkl
+# *.pickle
