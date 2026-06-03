@@ -1,6 +1,8 @@
-/* frontend/src/App.css */
 body {
-  background-color: #141414;
+  background: radial-gradient(circle at 10% 20%, rgba(229, 9, 20, 0.15) 0%, transparent 40%),
+              radial-gradient(circle at 90% 80%, rgba(229, 9, 20, 0.1) 0%, transparent 40%),
+              #141414;
+  background-attachment: fixed;
   color: #e5e5e5;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   margin: 0;
@@ -8,26 +10,24 @@ body {
 }
 
 .app-container {
-  max-width: 1000px;
-  margin: 40px auto;
-  padding: 40px;
-  background: #1f1f1f;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+  max-width: 1400px;
+  margin: 20px auto;
+  padding: 20px 40px;
 }
 
 .header {
   text-align: center;
-  margin-bottom: 40px;
-  border-bottom: 1px solid #333;
+  margin-bottom: 30px;
   padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 h1 {
   color: #e50914;
   font-size: 2.8rem;
-  margin: 0 0 10px 0;
+  margin: 0 0 5px 0;
   letter-spacing: 1.5px;
+  text-shadow: 0 2px 10px rgba(229, 9, 20, 0.3);
 }
 
 .header p {
@@ -36,10 +36,30 @@ h1 {
   margin: 0;
 }
 
+.main-content {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.form-section, .dashboard-section {
+  background: rgba(20, 20, 20, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
+  padding: 30px;
+}
+
+.form-section {
+  flex: 1.5;
+}
+
 .form-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 15px;
 }
 
 .input-group {
@@ -48,27 +68,33 @@ h1 {
 }
 
 .input-group label {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   font-weight: 600;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   color: #b3b3b3;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .input-group input, .input-group select {
-  padding: 12px;
-  background-color: #333;
-  border: 1px solid #444;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 6px;
   color: #fff;
-  font-size: 1rem;
-  transition: border-color 0.3s;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
 }
 
 .input-group input:focus, .input-group select:focus {
   outline: none;
   border-color: #e50914;
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 10px rgba(229, 9, 20, 0.2);
+}
+
+.input-group select option {
+  background: #141414;
 }
 
 .submit-container {
@@ -78,61 +104,204 @@ h1 {
 }
 
 button {
-  background-color: #e50914;
+  background: linear-gradient(135deg, #e50914 0%, #b80710 100%);
   color: white;
   border: none;
-  padding: 15px 40px;
-  font-size: 1.2rem;
+  padding: 15px 50px;
+  font-size: 1.1rem;
   font-weight: bold;
   border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.2s, transform 0.1s;
+  transition: all 0.3s ease;
+  width: 100%;
+  box-shadow: 0 4px 15px rgba(229, 9, 20, 0.3);
 }
 
-button:hover {
-  background-color: #f40612;
+button:hover { 
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(229, 9, 20, 0.5);
 }
 
 button:active {
-  transform: scale(0.98);
+  transform: translateY(0);
 }
 
-button:disabled {
-  background-color: #555;
-  cursor: not-allowed;
+button:disabled { 
+  background: #333; 
+  box-shadow: none;
+  cursor: not-allowed; 
+  transform: none;
 }
 
-.result-card {
-  margin-top: 40px;
-  padding: 30px;
-  border-radius: 8px;
+.dashboard-section {
+  flex: 1;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+.empty-state, .loading-state, .error-state {
+  margin: auto;
   text-align: center;
+  color: #888;
+}
+
+.error-state { color: #ff4d4d; }
+
+.fade-in {
   animation: fadeIn 0.5s ease-in-out;
-}
-
-.result-card h2 {
-  margin: 0 0 10px 0;
-  font-size: 2rem;
-}
-
-.result-card p {
-  font-size: 1.2rem;
-  margin: 0;
-}
-
-.high-risk {
-  background-color: rgba(229, 9, 20, 0.15);
-  border: 1px solid #e50914;
-  color: #ff4d4d;
-}
-
-.low-risk {
-  background-color: rgba(46, 204, 113, 0.15);
-  border: 1px solid #2ecc71;
-  color: #2ecc71;
 }
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+.wheel-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.ring-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ring-text {
+  position: absolute;
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.wheel-container h2 {
+  margin-top: 20px;
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.insight-box {
+  background: rgba(255, 255, 255, 0.03);
+  border-left: 4px solid #e50914;
+  padding: 15px 20px;
+  border-radius: 4px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.insight-box h4 {
+  margin: 0 0 8px 0;
+  color: #fff;
+  font-size: 1.1rem;
+}
+
+.insight-box p {
+  margin: 0;
+  color: #ccc;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.high-risk-insight {
+  border-left-color: #e50914;
+}
+
+.low-risk-insight {
+  border-left-color: #2ecc71;
+}
+
+.metrics-container {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.metrics-container h3 {
+  margin: 0 0 5px 0;
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.metrics-subtitle {
+  font-size: 0.85rem;
+  color: #888;
+  margin: 0 0 20px 0;
+}
+
+.metrics-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.metric-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.metric-name {
+  width: 120px;
+  font-size: 0.9rem;
+  color: #ccc;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.metric-bar-bg {
+  flex: 1;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
+}
+
+.metric-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 1s ease-out;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.metric-value {
+  width: 45px;
+  text-align: right;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+/* Add this to the bottom of frontend/src/App.css */
+
+.helper-text {
+  font-size: 0.7rem;
+  color: #888;
+  margin-top: 4px;
+  letter-spacing: 0.5px;
+}
+
+/* Add to bottom of frontend/src/App.css */
+
+.readonly-input {
+  background: rgba(0, 0, 0, 0.6) !important;
+  color: #777 !important;
+  border-color: rgba(255, 255, 255, 0.05) !important;
+  cursor: not-allowed;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.readonly-input:focus {
+  border-color: rgba(255, 255, 255, 0.05) !important;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.5) !important;
+}
+
+.highlight-helper {
+  color: #e50914;
+  font-weight: bold;
 }
