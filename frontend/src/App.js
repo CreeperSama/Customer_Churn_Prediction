@@ -107,7 +107,7 @@ function App() {
     setLoading(true);
     setResult(null); 
     try {
-      const response = await axios.post(' https://churn-backend-nb7j.onrender.com', formData);
+      const response = await axios.post(' https://churn-backend-nb7j.onrender.com/predict', formData);
       setResult(response.data);
     } catch (error) {
       if (error.response && error.response.data && error.response.data.error) {
